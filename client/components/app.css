@@ -29,12 +29,13 @@ body {
   padding: 0.5rem;
 }
 
-.links {
+a.links {
   display: inline-block;
   padding: 0 1rem;
   text-decoration: none;
   color: #db7f67;
   margin-bottom: 0.5rem;
+  cursor: pointer;
 }
 
 .repo-title {
@@ -97,4 +98,20 @@ button {
 .imported a {
   text-decoration: none;
   color: #db7f67;
+}
+
+.js-issue-row {
+  color: #c1eeff;
+  margin: 1rem;
+  padding: 2rem;
+  border-top: 1rem solid #db7f67;
+  border-left: 1px solid #db7f67;
+  border-right: 1px solid #db7f67;
+  border-bottom: 1px solid #db7f67;
+  border-radius: 0 0 1rem 1rem;
+}
+
+a.IssueLabel::before {
+  content: '\A';
+  display: block;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchResult from './searchResult';
 import fetch from 'node-fetch';
 import './app.css';
@@ -20,6 +20,10 @@ export default () => {
       });
   };
 
+  const resetData = () => {
+    setPage('');
+    setData({});
+  };
   const handleSearch = () => {
     fetch(`/api?search=${search}`)
       .then((res) => res.json())
@@ -29,24 +33,34 @@ export default () => {
       });
   };
 
-  const getPage = (url) => {
+  const getPage = (url, site = 'github') => {
     console.log(url);
     fetch('/api/page', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ url }),
+      body: JSON.stringify({ url, site }),
     })
       .then((res) => res.text())
       .then((data) => setPage(data));
   };
 
+  useEffect(() => {
+    const listener = (event) => {
+      if (event.key === 'Enter') {
+        handleSearch();
+      }
+    };
+    document.addEventListener('keydown', listener);
+    return () => document.removeEventListener('keydown', listener);
+  }, [handleSearch]);
+
   return (
     <div>
       <div className='header'>
-        <h1>DOX!</h1>
-        <input onInput={handleInput}></input>
+        <h1 onClick={resetData}>DOX!</h1>
+        <input onChange={handleInput} value={search}></input>
         <button onClick={handleSearch}>Search!</button>
       </div>
       {data.results &&
@@ -56,7 +70,10 @@ export default () => {
           <div className='repo-title'>{data.collected.metadata.name.toUpperCase()}</div>
           <div>
             {Object.entries(data.collected.metadata.links).map(([site, link]) => (
-              <a className='links' href={link}>
+              <a
+                className='links'
+                onClick={site === 'homepage' ? '' : () => getPage(link, site)}
+                href={site === 'homepage' ? link : '#'}>
                 -{site.toUpperCase()}-
               </a>
             ))}
