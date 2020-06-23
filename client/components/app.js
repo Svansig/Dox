@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 import './app.css';
 export default () => {
   let [search, setSearch] = useState('');
+  let [page, setPage] = useState('');
   let [data, setData] = useState({});
 
   const handleInput = (e) => setSearch(e.target.value);
@@ -15,6 +16,7 @@ export default () => {
       .then((data) => {
         console.log(data);
         setData(data);
+        getPage(data.collected.metadata.links.repository);
       });
   };
 
@@ -25,6 +27,19 @@ export default () => {
         console.log(data);
         setData(data);
       });
+  };
+
+  const getPage = (url) => {
+    console.log(url);
+    fetch('/api/page', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ url }),
+    })
+      .then((res) => res.text())
+      .then((data) => setPage(data));
   };
 
   return (
@@ -49,6 +64,7 @@ export default () => {
           <div>Description: {data.collected.metadata.description}</div>
         </div>
       )}
+      <div>{page && <div className='imported' dangerouslySetInnerHTML={{ __html: page }} />}</div>
     </div>
   );
 };

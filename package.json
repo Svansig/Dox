@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Svansig/Dox#readme",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

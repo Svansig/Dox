@@ -21,10 +21,11 @@ body {
 
 .description {
   background-color: #2e1c2b;
-  border-radius: 0 0 0 1rem;
+  border-radius: 0 0 1rem 1rem;
   text-align: center;
   border-bottom: 2px solid #db7f67;
   border-left: 2px solid #db7f67;
+  border-right: 2px solid #db7f67;
   padding: 0.5rem;
 }
 
@@ -32,7 +33,7 @@ body {
   display: inline-block;
   padding: 0 1rem;
   text-decoration: none;
-  color: #c1eeff;
+  color: #db7f67;
   margin-bottom: 0.5rem;
 }
 
@@ -84,4 +85,16 @@ button {
   margin: auto;
   border: none;
   border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.imported {
+  background-color: #2e1c2b;
+  color: #c1eeff;
+  margin: 2rem;
+  padding: 3rem;
+}
+
+.imported a {
+  text-decoration: none;
+  color: #db7f67;
 }
