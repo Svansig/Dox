@@ -3,10 +3,20 @@ body {
   color: #c1eeff;
 }
 
+.header > h1 {
+  padding: 0 1rem;
+  font-size: 48px;
+  margin: 0.5rem 0.5rem;
+}
+
 .header {
+  display: flex;
+  flex-direction: row;
+  padding: 0 1rem;
   background-color: #2e1c2b;
   border-radius: 1rem;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .description {
@@ -16,4 +26,62 @@ body {
   border-bottom: 2px solid #db7f67;
   border-left: 2px solid #db7f67;
   padding: 0.5rem;
+}
+
+.links {
+  display: inline-block;
+  padding: 0 1rem;
+  text-decoration: none;
+  color: #c1eeff;
+  margin-bottom: 0.5rem;
+}
+
+.repo-title {
+  font-size: x-large;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
+.search-result {
+  display: flex;
+  flex-direction: row;
+  padding: 0.25rem 0.5rem;
+  background-color: #2e1c2b;
+  border-bottom: 2px solid #db7f67;
+  border-radius: 3px;
+  margin: 4px;
+}
+
+.search-result > span {
+  font-weight: bold;
+  font-size: large;
+  width: 35%;
+  min-width: 35%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* border-right: 1px solid #db7f67; */
+}
+
+input {
+  flex-grow: 3;
+  align-self: center;
+  display: inline-block;
+  background-color: #c1eeff;
+  padding: 0.5em;
+  margin: auto;
+  font-size: large;
+  border: none;
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+button {
+  display: inline-block;
+  background-color: #db7f67;
+  color: #c1eeff;
+  font-size: large;
+  font-weight: bold;
+  padding: 0.5em;
+  margin: auto;
+  border: none;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
