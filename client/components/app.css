@@ -1,0 +1,19 @@
+body {
+  background-color: #050404;
+  color: #c1eeff;
+}
+
+.header {
+  background-color: #2e1c2b;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.description {
+  background-color: #2e1c2b;
+  border-radius: 0 0 0 1rem;
+  text-align: center;
+  border-bottom: 2px solid #db7f67;
+  border-left: 2px solid #db7f67;
+  padding: 0.5rem;
+}
