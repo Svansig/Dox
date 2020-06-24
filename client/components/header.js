@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default () => {
+export default (props) => (
   <div className='header'>
-    <h1>DOX!</h1>
-    <input onInput={handleInput}></input>
-    <button onClick={handleSearch}>Search!</button>
-  </div>;
-};
+    <Link to='/'>
+      <h1>DOX!</h1>
+    </Link>
+    <input onChange={props.handleInput} value={props.search}></input>
+    <button>
+      <Link to='/search'>Search!</Link>
+    </button>
+  </div>
+);

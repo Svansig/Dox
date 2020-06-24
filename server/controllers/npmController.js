@@ -6,7 +6,6 @@ const npmController = {};
 
 npmController.search = async (req, res, next) => {
   const baseURL = 'https://api.npms.io/v2/search';
-  // console.log(req.query);
   if (!req.query.search) {
     return next({ code: 400, message: 'A valid query is required to search.' });
   }
@@ -19,7 +18,6 @@ npmController.search = async (req, res, next) => {
       try {
         const response = await fetch(searchURL);
         const data = await response.json();
-        // console.log(data);
         const savedQuery = {
           query,
           responses: data.results.map((package) => ({
@@ -46,25 +44,24 @@ npmController.search = async (req, res, next) => {
 
 npmController.details = async (req, res, next) => {
   const baseURL = 'https://api.npms.io/v2/package/';
-  // console.log(req.params.package);
   if (!req.params.package) {
     return next({ code: 400, message: 'A valid query is required to search.' });
   }
   const packageName = req.params.package;
-  Pages.find({ project: req.params.package }, async (err, results) => {
+  Pages.find({ project: packageName }, async (err, results) => {
     if (err) return next(err);
-    // console.log('pages found:', results.length);
     if (!results.length) {
       const packageURL = `${baseURL}${packageName}`;
       try {
         const response = await fetch(packageURL);
         const data = await response.json();
-        console.log(data);
-        const { bugs, homepage, npm, repository } = data.collected.metadata.links;
+        // console.log(data);
+        const { name, description, links } = data.collected.metadata;
+        const { bugs, homepage, npm, repository } = links;
         Pages.create(
           {
-            project: data.collected.metadata.name,
-            description: data.collected.metadata.description,
+            project: name,
+            description: description,
             links: { bugs, homepage, npm, repository },
             pages: {},
           },

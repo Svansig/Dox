@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default (props) => {
   return (
     <div className='search-result'>
-      <span onClick={() => props.getMoreInfo(props.name)}>{props.name}</span>
+      <Link to={`/${props.name}`}>{props.name}</Link>
       {props.description}
     </div>
   );

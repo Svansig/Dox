@@ -19,41 +19,50 @@ const parseBugs = (html) => {
   return $('div.js-active-navigation-container').html();
 };
 
+const forwardCached = (req, res, result, next) => {
+  console.log('cached');
+  res.locals.webpage = result.pages[req.body.site];
+  return next();
+};
+
+const getNewPage = async (url, siteName) => {
+  console.log('new fetch');
+  let response = await fetch(url);
+  response = await response.text();
+  switch (siteName) {
+    case 'repository':
+      return parseGithub(response);
+    case 'npm':
+      return parseNPM(response);
+    case 'bugs':
+      return parseBugs(response);
+    default:
+      return;
+  }
+};
+
 webPageController.get = async (req, res, next) => {
-  console.log(req.body);
-  Pages.find({ project: req.body.name }, async (err, results) => {
+  const { name, site, url } = req.body;
+  Pages.find({ project: name }, async (err, results) => {
     if (err) return next(err);
-    // console.log(results);
     const result = results[0];
-    // console.log(results.length);
-    if (result.pages && result.pages[req.body.site]) {
-      res.locals.webpage = result.pages[req.body.site];
-      return next();
+    if (result.pages && result.pages[site]) {
+      return forwardCached(req, res, result, next);
     }
-    if (!result.pages || !result.pages[req.body.site]) {
-      // console.log('inside if', result.length);
-      let response = await fetch(req.body.url);
-      response = await response.text();
-      if (req.body.site === 'repository') {
-        res.locals.webpage = parseGithub(response);
-      } else if (req.body.site === 'npm') {
-        res.locals.webpage = parseNPM(response);
-      } else if (req.body.site === 'bugs') {
-        res.locals.webpage = parseBugs(response);
-      }
+    if (!result.pages || !result.pages[site]) {
+      res.locals.webpage = await getNewPage(url, site);
       if (!result.pages) {
         result.pages = {};
       }
-      result.pages[req.body.site] = res.locals.webpage;
+
       Pages.findOneAndUpdate(
-        { project: req.body.name },
+        { project: name },
         {
-          pages: { ...result[0].pages, [req.body.site]: res.locals.webpage },
+          pages: { ...result.pages, [site]: res.locals.webpage },
         },
         { new: true },
         (err, doc) => {
           if (err) return next(err);
-          // console.log(doc);
           return next();
         }
       );

@@ -1,12 +1,18 @@
 body {
   background-color: #133c55;
-  color: #8499b1;
+  color: #aac6e6;
 }
 
-.header > h1 {
+.header > a {
+  text-decoration: none;
+}
+
+.header h1 {
+  color: #aac6e6;
   padding: 0 1rem;
   font-size: 48px;
   margin: 0.5rem 0.5rem;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -45,7 +51,7 @@ a.links {
   font-size: 6rem;
   font-weight: bold;
   margin: 0.5rem;
-  color: #8499b1;
+  color: #aac6e6;
 }
 
 .search-result {
@@ -58,7 +64,9 @@ a.links {
   margin: 1rem;
 }
 
-.search-result > span {
+.search-result > a {
+  padding-left: 2rem;
+  color: #aac6e6;
   font-weight: bold;
   font-size: 1.5em;
   width: 35%;
@@ -66,10 +74,12 @@ a.links {
   text-overflow: ellipsis;
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
   /* border-right: 1px solid #db7f67; */
 }
 
-.octicon-link {
+.octicon-link,
+.deep-link-icon {
   display: none;
 }
 
@@ -104,11 +114,15 @@ button {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
+button > * {
+  text-decoration: none;
+}
+
 .imported {
   background-color: #0c1821;
   font-size: larger;
   line-height: 1.75rem;
-  color: #8499b1;
+  color: #aac6e6;
   margin: 2rem;
   padding: 3rem;
   border-radius: 0 0 1rem 1rem;
