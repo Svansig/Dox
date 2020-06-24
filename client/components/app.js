@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom';
 
 import SearchResults from './searchResults';
 import Header from './header';
@@ -8,22 +8,13 @@ import './app.css';
 
 export default () => {
   let [search, setSearch] = useState('');
+  let history = useHistory();
 
   const handleInput = (e) => setSearch(e.target.value);
 
-  useEffect(() => {
-    const listener = (event) => {
-      if (event.key === 'Enter') {
-        return <Redirect to='/search' />;
-      }
-    };
-    document.addEventListener('keydown', listener);
-    return () => document.removeEventListener('keydown', listener);
-  }, []);
-
   return (
     <Router>
-      <Header handleInput={handleInput} search={search} />
+      <Header handleInput={handleInput} search={search} history={history} />
       <Switch>
         <Route path='/search'>
           <SearchResults search={search} setSearch={setSearch} />

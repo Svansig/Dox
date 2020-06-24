@@ -116,6 +116,7 @@ button {
 
 button > * {
   text-decoration: none;
+  color: #133c55;
 }
 
 .imported {

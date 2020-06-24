@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
@@ -36,8 +38,9 @@ app.get('/api/:package', npmController.details, (req, res) => {
 });
 
 // serves front end app
-app.get('/', (req, res) => {
-  res.status(200).json('hello');
-});
+app.use('/dist', express.static(path.resolve(__dirname, '../dist')));
+
+app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, '../dist/index.html')));
+app.get(/.*/, (req, res) => res.redirect('/'));
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
