@@ -16,7 +16,7 @@ export default () => {
       .then((data) => {
         console.log(data);
         setData(data);
-        getPage(data.collected.metadata.links.repository);
+        getPage(data.project, data.links.repository, 'repository');
       });
   };
 
@@ -30,20 +30,24 @@ export default () => {
       .then((data) => {
         console.log(data);
         setData(data);
+        setSearch('');
       });
   };
 
-  const getPage = (url, site = 'github') => {
+  const getPage = (name, url, site) => {
     console.log(url);
     fetch('/api/page', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ url, site }),
+      body: JSON.stringify({ url, site, name }),
     })
       .then((res) => res.text())
-      .then((data) => setPage(data));
+      .then((data) => {
+        // console.log(data);
+        setPage(data);
+      });
   };
 
   useEffect(() => {
@@ -63,22 +67,22 @@ export default () => {
         <input onChange={handleInput} value={search}></input>
         <button onClick={handleSearch}>Search!</button>
       </div>
-      {data.results &&
-        data.results.map((result) => <SearchResult {...result} getMoreInfo={getMoreInfo} />)}
-      {data.collected && (
+      {data.responses &&
+        data.responses.map((result) => <SearchResult {...result} getMoreInfo={getMoreInfo} />)}
+      {data.project && (
         <div className='description'>
-          <div className='repo-title'>{data.collected.metadata.name.toUpperCase()}</div>
+          <div className='repo-title'>{data.project.toUpperCase()}</div>
           <div>
-            {Object.entries(data.collected.metadata.links).map(([site, link]) => (
+            {Object.entries(data.links).map(([site, link]) => (
               <a
                 className='links'
-                onClick={site === 'homepage' ? '' : () => getPage(link, site)}
+                onClick={site === 'homepage' ? () => {} : () => getPage(data.project, link, site)}
                 href={site === 'homepage' ? link : '#'}>
                 -{site.toUpperCase()}-
               </a>
             ))}
           </div>
-          <div>Description: {data.collected.metadata.description}</div>
+          <div>{data.description}</div>
         </div>
       )}
       <div>{page && <div className='imported' dangerouslySetInnerHTML={{ __html: page }} />}</div>

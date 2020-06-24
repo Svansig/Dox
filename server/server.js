@@ -1,6 +1,16 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 
+const connectionURL = 'mongodb+srv://dox:readthedox@cluster0-9dhjy.mongodb.net';
+
+mongoose.connect(connectionURL, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  // we're connected!
+  console.log('connected to mongoDB');
+});
 const npmController = require('./controllers/npmController');
 const webPageController = require('./controllers/webPageController');
 

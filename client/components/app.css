@@ -1,74 +1,85 @@
 body {
   background-color: #050404;
-  color: #c1eeff;
+  color: #fcfcfc;
 }
 
 .header > h1 {
   padding: 0 1rem;
   font-size: 48px;
   margin: 0.5rem 0.5rem;
+  cursor: pointer;
 }
 
 .header {
   display: flex;
   flex-direction: row;
-  padding: 0 1rem;
-  background-color: #2e1c2b;
+  padding: 1rem 1rem;
+  background-color: #160f29;
   border-radius: 1rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #05f140;
 }
 
 .description {
-  background-color: #2e1c2b;
+  background-color: #160f29;
   border-radius: 0 0 1rem 1rem;
   text-align: center;
-  border-bottom: 2px solid #db7f67;
-  border-left: 2px solid #db7f67;
-  border-right: 2px solid #db7f67;
+  border-bottom: 2px solid #05f140;
+  /* border-left: 2px solid #db7f67;
+  border-right: 2px solid #db7f67; */
   padding: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 a.links {
   display: inline-block;
   padding: 0 1rem;
   text-decoration: none;
-  color: #db7f67;
+  color: #05f140;
   margin-bottom: 0.5rem;
   cursor: pointer;
 }
 
 .repo-title {
-  font-size: x-large;
+  font-size: 6rem;
   font-weight: bold;
   margin: 0.5rem;
+  color: #fcfcfc;
 }
 
 .search-result {
   display: flex;
   flex-direction: row;
-  padding: 0.25rem 0.5rem;
-  background-color: #2e1c2b;
-  border-bottom: 2px solid #db7f67;
+  padding: 1.5rem 0.5rem;
+  background-color: #160f29;
+  border-bottom: 2px solid #05f140;
   border-radius: 3px;
-  margin: 4px;
+  margin: 1rem;
 }
 
 .search-result > span {
   font-weight: bold;
-  font-size: large;
+  font-size: 1.5em;
   width: 35%;
   min-width: 35%;
   text-overflow: ellipsis;
   overflow: hidden;
+  cursor: pointer;
   /* border-right: 1px solid #db7f67; */
 }
 
+.octicon-link {
+  display: none;
+}
+
 input {
+  box-sizing: border-box;
   flex-grow: 3;
   align-self: center;
   display: inline-block;
-  background-color: #c1eeff;
+  background-color: #fcfcfc;
+  color: #050404;
   padding: 0.5em;
   margin: auto;
   font-size: large;
@@ -76,38 +87,52 @@ input {
   border-radius: 0.5rem 0 0 0.5rem;
 }
 
+input:focus {
+  outline: none;
+}
+
 button {
   display: inline-block;
-  background-color: #db7f67;
-  color: #c1eeff;
+  background-color: #05f140;
+  border: none;
+  border-left: 2px solid #2e1c2b;
+  color: #2e1c2b;
   font-size: large;
   font-weight: bold;
-  padding: 0.5em;
+  padding: 0.5em 1rem;
   margin: auto;
-  border: none;
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .imported {
-  background-color: #2e1c2b;
-  color: #c1eeff;
+  background-color: #160f29;
+  font-size: larger;
+  line-height: 1.75rem;
+  color: #fcfcfc;
   margin: 2rem;
   padding: 3rem;
+  border-radius: 0 0 1rem 1rem;
+  border-bottom: 2px solid #05f140;
 }
 
 .imported a {
   text-decoration: none;
-  color: #db7f67;
+  color: #05f140;
+}
+
+.imported:first-child {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
 }
 
 .js-issue-row {
-  color: #c1eeff;
+  color: #fcfcfc;
   margin: 1rem;
   padding: 2rem;
-  border-top: 1rem solid #db7f67;
-  border-left: 1px solid #db7f67;
-  border-right: 1px solid #db7f67;
-  border-bottom: 1px solid #db7f67;
+  border-top: 1rem solid #05f140;
+  border-left: 1px solid #05f140;
+  border-right: 1px solid #05f140;
+  border-bottom: 1px solid #05f140;
   border-radius: 0 0 1rem 1rem;
 }
 
