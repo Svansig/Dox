@@ -1,6 +1,7 @@
 body {
   background-color: #133c55;
   color: #aac6e6;
+  font-family: 'Roboto', sans-serif;
 }
 
 .header > a {
@@ -8,6 +9,8 @@ body {
 }
 
 .header h1 {
+  font-family: 'Old Standard TT', serif;
+  vertical-align: middle;
   color: #aac6e6;
   padding: 0 1rem;
   font-size: 48px;
@@ -19,6 +22,7 @@ body {
 .header {
   display: flex;
   flex-direction: row;
+  align-content: center;
   padding: 1rem 1rem;
   background-color: #0c1821;
   border-radius: 1rem;
@@ -48,6 +52,7 @@ a.links {
 }
 
 .repo-title {
+  font-family: 'Old Standard TT', serif;
   font-size: 6rem;
   font-weight: bold;
   margin: 0.5rem;

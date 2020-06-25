@@ -41,6 +41,6 @@ app.get('/api/:package', npmController.details, (req, res) => {
 app.use('/dist', express.static(path.resolve(__dirname, '../dist')));
 
 app.get('/', (req, res) => res.sendFile(path.resolve(__dirname, '../dist/index.html')));
-app.get(/.*/, (req, res) => res.redirect('/'));
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../dist/index.html')));
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

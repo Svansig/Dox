@@ -1,0 +1,34 @@
+I am not good at design, so I wanted to spend some time working on design for my solo project.  I had some help from Vika to help overcome some of my Deuteranopia.
+
+So who has been doing nothing but navigating through as many webpages as they can find, trying to get to the right spot in the documentation for the last 48 hours?
+
+GOOD NEWS!
+
+It's going to get a little bit simpler. 
+
+INTRODUCING: DOX!
+
+It's all the docs in one simple place.  
+
+Just type in the NPM package you want to know about.
+
+(ASK the audience for suggestions)
+
+Then BAM! You have all the documentation at your fingertips.
+
+FEATURES:
+    - DB caching of all searches and pages
+    - Scraped versions of the github doc, NPM docs, and outstanding bugs
+
+TECH:
+    - React (with hand-rolled webpack, so Kyle doesn't shiv me while I sleep)
+    - React Hooks
+    - React Router
+    - MongoDB (better for single one-to-many relationships, postgresQL would have required literally 50x as many database calls)
+    - Express routing
+    - Deployed (to Heroku)
+
+STRUGGLES: 
+    - I wanted to focus on the front end design, as I have a weak point there.  I spent a lopt of time with Vika working on picking out some colors.
+    - I spent a lot of time trying to figure out how to deep-link someone from outside with react router.  Still not sure how to do it, but that would be my next feature.
+    - 
